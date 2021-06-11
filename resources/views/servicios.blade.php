@@ -2,7 +2,7 @@
 @section("content")
     <div class="container">
     <table class="table">
-        <h2>Servicios</h2>
+        <h2>Consultar Servicios</h2>
         <tr>
             <th>Nombre</th>
             <th>Tipo de Servicios</th>

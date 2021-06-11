@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\DireccionController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,13 @@ Route::view("/ingreso-proveedor","ingresarProveedor");
 Route::post("/ingresar-proveedor",[ProveedorController::class,"guardar"]);
 
 Route::view("/ingreso-servicios","servicios");
+Route::get("/ingresar-servicio",function (){
+   if (Auth::check()){
+       return view("servicios");
+   }else{
+       return redirect("/login");
+   }
+})->name("servicio");
 
 Route::get("/mostrar-proveedor",[ProveedorController::class,"mostrar"]);
 Route::get("/actualizar-proveedor/{id}",[ProveedorController::class,"mostrarProveedor"]);
@@ -39,3 +48,43 @@ Route::delete("/eliminar-proveedor/{id}",[ProveedorController::class,"eliminar"]
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::view("/subir-archivos", "archivos");
+Route::post("/subir-archivos",function (){
+    return \request()->file("archivo")->store("imagenes");
+});
+
+
+
+Route::view("/ingresar-direccion", "guardarDireccion");
+Route::post("/guardar-direccion",[DireccionController::class,'guardar']);
+
+Route::get("/mostrar-servicio",function () {
+    if (Auth::check()){
+        return view("mostrarServicios");
+    }else{
+        return redirect("/login");
+    }
+
+})->name("mostrar_servicio");
+
+Route::get("/ingresar-detalles",function () {
+    if (Auth::check()){
+        return view("ingresarDetalle");
+    }else{
+        return redirect("/login");
+    }
+
+})->name("compras");
+
+Route::get("/mostrar-detalles",function () {
+    if (Auth::check()){
+        return view("mostarDetalle");
+    }else{
+        return redirect("/login");
+    }
+
+})->name("mostrar_compra");
+
+

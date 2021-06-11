@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProveedorsTable extends Migration
+class CreateDireccionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateProveedorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('proveedors', function (Blueprint $table) {
+        Schema::create('direccions', function (Blueprint $table) {
             $table->id();
-            $table->String("Nombre",100);
-            $table->String("Apellidos",100);
-            $table->String("Direccion",200);
-            $table->String("Telefono");
+            $table->string("region");
+            $table->string("provincia");
+            $table->string("distrito");
+            $table->string("residencia");
+            $table->unsignedBigInteger("id_usuario");
         });
     }
 
@@ -29,6 +30,6 @@ class CreateProveedorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proveedors');
+        Schema::dropIfExists('direccions');
     }
 }

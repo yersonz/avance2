@@ -18,7 +18,7 @@ class CreateUsuariosTable extends Migration
             $table->String("Nombre",100);
             $table->String("Apellidos",100);
             $table->String("Direccion",200);
-            $table->unsignedInteger("Telefono");
+            $table->String("Telefono");
             $table->String("Email",100);
 
 

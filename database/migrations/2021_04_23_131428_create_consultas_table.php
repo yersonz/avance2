@@ -16,12 +16,8 @@ class CreateConsultasTable extends Migration
         Schema::create('consultas', function (Blueprint $table) {
             $table->id();
             $table->String("Nombre","100");
-            $table->string("Tipo","100");
-        });
-        Schema::table('consultas', function (Blueprint $table) {
+            $table->float("Tipo");
             $table->unsignedBigInteger("id_usuario");
-            $table->foreign("id_usuario")->references("id")->on("usuarios")->cascadeOnDelete();
-
         });
     }
 
