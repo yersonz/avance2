@@ -5,7 +5,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\DireccionController;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\DetalleController;
+use App\Http\Controllers\ConsultaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,8 +31,8 @@ Route::delete("/eliminar-usuario/{id}",[UsuarioController::class,"eliminar"])->n
 Route::view("/ingreso-proveedor","ingresarProveedor");
 Route::post("/ingresar-proveedor",[ProveedorController::class,"guardar"]);
 
-Route::view("/ingreso-servicios","servicios");
-Route::get("/ingresar-servicio",function (){
+Route::get("/ingreso-servicios",[ConsultaController::class,"consulta"]);
+Route::get("/ingresar-servicios",function (){
    if (Auth::check()){
        return view("servicios");
    }else{
@@ -42,7 +43,6 @@ Route::get("/ingresar-servicio",function (){
 Route::get("/mostrar-proveedor",[ProveedorController::class,"mostrar"]);
 Route::get("/actualizar-proveedor/{id}",[ProveedorController::class,"mostrarProveedor"]);
 Route::post("/actualizar-proveedor",[ProveedorController::class,"actualizar"]);
-
 Route::delete("/eliminar-proveedor/{id}",[ProveedorController::class,"eliminar"])->name("eliminar");
 
 Auth::routes();
@@ -50,10 +50,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::view("/subir-archivos", "archivos");
-Route::post("/subir-archivos",function (){
-    return \request()->file("archivo")->store("imagenes");
-});
+Route::get("/subir-archivos", [DetalleController::class,'archivo'])->name("foto");
+Route::post("/subir-archivos", [DetalleController::class,'GuardarArchivo'])->name("subir");
 
 
 

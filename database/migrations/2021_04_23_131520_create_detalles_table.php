@@ -14,12 +14,16 @@ class CreateDetallesTable extends Migration
     public function up()
     {
         Schema::create('detalles', function (Blueprint $table) {
-            $table->id();
-            $table->string("Nombre",100);
-            $table->string("Descripcion",200);
-            $table->unsignedBigInteger("id_consulta");
-            $table->unsignedBigInteger("id_pedido");
-            $table->unsignedBigInteger("id_proveedor");
+            $table->increments('ide');
+            $table->string("nombre",100);
+            $table->string("descripcion",200);
+            $table->binary("foto")->nullable();
+
+
+            $table->integer('idd')->unsigned();
+            $table->foreign('idd')->references('idd')->on('categorias');
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

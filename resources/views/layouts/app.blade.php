@@ -48,11 +48,11 @@
                             @endif
                         @if($usuario["type"]==2)
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('compras') }}">{{ __('Ingresar Compra') }}</a>
+                            <a class="nav-link" href="{{ route('foto') }}">{{ __('Publicar') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('mostrar_compra') }}">{{ __('Mostrar Compra') }}</a>
+                            <a class="nav-link" href="{{ route('mostrar_compra') }}">{{ __('Ver publicaciones') }}</a>
                         </li>
                         @endif
 
